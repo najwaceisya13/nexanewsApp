@@ -1,0 +1,110 @@
+===============================================
+    🚀 NEXANEWS - QUICK START GUIDE 🚀
+===============================================
+
+FASTEST WAY TO GET RUNNING:
+
+1. OPEN TERMINAL & RUN:
+   cd d:\malikussaleh\joki\nexanews-app
+   composer install
+
+2. SETUP .env:
+   cp .env.example .env
+   php artisan key:generate
+
+3. DATABASE (edit .env first if needed):
+   php artisan migrate
+   php artisan db:seed
+
+4. STORAGE:
+   php artisan storage:link
+
+5. RUN SERVER:
+   php artisan serve
+
+6. OPEN BROWSER:
+   http://localhost:8000
+
+7. LOGIN AS ADMIN:
+   Email: admin@nexanews.com
+   Password: admin123456
+
+===============================================
+
+WHAT'S INSIDE:
+
+✅ Full CRUD Artikel (Create, Read, Update, Delete)
+✅ Kategori Management  
+✅ Comment System dengan Moderasi
+✅ Like/Reaksi
+✅ Search Berita
+✅ Upload Gambar
+✅ Admin Dashboard
+✅ Responsive Design
+✅ Professional UI (Tailwind CSS)
+✅ 15+ Database Relations
+
+===============================================
+
+IMPORTANT URLS:
+
+Homepage:        http://localhost:8000
+Admin Login:     http://localhost:8000/login
+Admin Dashboard: http://localhost:8000/admin/dashboard
+Artikel Manager: http://localhost:8000/admin/articles
+Kategori:        http://localhost:8000/admin/categories
+Moderasi Komentar: http://localhost:8000/admin/comments
+Kelola User:     http://localhost:8000/admin/users
+
+===============================================
+
+DEFAULT ACCOUNTS:
+
+Admin:
+  Email: admin@nexanews.com
+  Password: admin123456
+
+User:
+  Email: test@example.com
+  Password: password
+
+===============================================
+
+FILES CREATED:
+
+📁 Migrations (6 files)
+📁 Models (6 files with relations)
+📁 Controllers (6 files)
+📁 Blade Templates (14 files)
+📁 Routes (fully configured)
+📁 Middleware (admin protection)
+📁 Documentation (DOKUMENTASI.md)
+
+===============================================
+
+TOTAL: 30+ Files | ~3000+ Lines of Code
+
+===============================================
+
+💡 PRO TIP:
+   After running db:seed, there will be:
+   - 2 Users (admin + regular)
+   - 3 Categories (Makanan, Teknologi, Pendidikan)
+   - 3 Sample Articles
+   
+   Ready to use immediately!
+
+===============================================
+
+📚 DOCUMENTATION:
+   - DOKUMENTASI.md (Full details)
+   - SETUP_GUIDE.md (Detailed setup)
+   - This file (Quick start)
+
+===============================================
+
+🎉 ENJOY YOUR NEXANEWS WEBSITE!
+
+For detailed info, read DOKUMENTASI.md
+
+===============================================
