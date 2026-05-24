@@ -75,6 +75,13 @@
                         <i class="fas fa-times mr-2"></i>Reject
                     </button>
                 </form>
+                <form action="{{ route('comments.destroy', $comment) }}" method="POST" class="inline" onsubmit="return confirm('Hapus komentar ini?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-outline text-sm text-red-600 border-red-600">
+                        <i class="fas fa-trash mr-2"></i>Hapus
+                    </button>
+                </form>
             </div>
             @else
             <form action="{{ route('comments.destroy', $comment) }}" method="POST" class="inline" onsubmit="return confirm('Hapus komentar ini?')">

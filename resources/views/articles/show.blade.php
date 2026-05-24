@@ -130,22 +130,7 @@
                                     </p>
                                 </div>
                                 @if(auth()->check() && auth()->user()->isAdmin())
-                                <div class="flex space-x-2">
-                                    <form action="{{ route('comments.approve', $comment) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="text-xs px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700">
-                                            Approve
-                                        </button>
-                                    </form>
-                                    <form action="{{ route('comments.reject', $comment) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="text-xs px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700">
-                                            Reject
-                                        </button>
-                                    </form>
-                                </div>
+                                <!-- Tombol Approve dan Reject dihilangkan sesuai permintaan -->
                                 @endif
                             </div>
                             <p class="text-gray-700">{{ $comment->content }}</p>
