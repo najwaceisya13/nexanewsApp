@@ -598,7 +598,7 @@
                     </ul>
                 </div>
                 <div>
-    <h4 class="font-semibold mb-4">Kontak</h4>
+    <h4 class="font-semibold mb-4">Stay Connected</h4>
     <ul class="space-y-2 text-sm text-gray-400">
 
        <div class="social-icons flex gap-4 mt-3">
