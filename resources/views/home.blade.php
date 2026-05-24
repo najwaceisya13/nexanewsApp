@@ -167,6 +167,13 @@
                         Kirimkan saran atau keluhan Anda kepada kami untuk meningkatkan kualitas layanan.
                     </p>
 
+                    @if($errors->has('message'))
+                    <div class="alert alert-error text-xs p-3 mb-3 rounded-lg flex items-center gap-2">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>{{ $errors->first('message') }}</span>
+                    </div>
+                    @endif
+
                     <form method="POST" action="{{ route('feedback.store') }}">
                         @csrf
                         <textarea

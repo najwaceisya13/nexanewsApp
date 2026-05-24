@@ -136,6 +136,20 @@
                         Kirimkan saran atau keluhan Anda kepada kami.
                     </p>
 
+                    @if(session('success'))
+                    <div class="alert alert-success text-xs p-3 mb-3 rounded-lg flex items-center gap-2">
+                        <i class="fas fa-check-circle"></i>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                    @endif
+
+                    @if($errors->has('message'))
+                    <div class="alert alert-error text-xs p-3 mb-3 rounded-lg flex items-center gap-2">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>{{ $errors->first('message') }}</span>
+                    </div>
+                    @endif
+
                     <form method="POST" action="{{ route('feedback.store') }}">
                         @csrf
                         <textarea
@@ -143,13 +157,6 @@
                             placeholder="Tulis pesan Anda di sini..."
                             required
                         ></textarea>
-
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email Anda (opsional)"
-                            class="w-full mb-3 p-2 rounded-lg text-gray-900"
-                        >
 
                         <button type="submit">
                             <i class="fas fa-paper-plane mr-2"></i>KIRIM

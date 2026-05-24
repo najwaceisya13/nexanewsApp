@@ -18,17 +18,15 @@ class FeedbackController extends Controller
     {
         $validated = $request->validate([
             'message' => 'required|string|min:5|max:1000',
-            'email' => 'nullable|email',
         ], [
             'message.required' => 'Pesan umpan balik harus diisi',
             'message.min' => 'Pesan umpan balik minimal 5 karakter',
             'message.max' => 'Pesan umpan balik maksimal 1000 karakter',
-            'email.email' => 'Format email tidak valid',
         ]);
 
         Feedback::create([
             'message' => $validated['message'],
-            'email' => $validated['email'] ?? null,
+            'email' => null, // Set to null since email is no longer collected
         ]);
 
         return redirect()
