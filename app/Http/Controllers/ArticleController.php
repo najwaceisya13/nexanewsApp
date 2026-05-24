@@ -48,6 +48,26 @@ class ArticleController extends Controller
         // Validasi sudah dilakukan di Form Request
         $validated = $request->validated();
 
+        // Handle dynamic category creation on the fly
+        if (!empty($validated['new_category'])) {
+            $categoryName = trim($validated['new_category']);
+            $categorySlug = \Illuminate\Support\Str::slug($categoryName);
+            
+            $category = Category::where('slug', $categorySlug)->first();
+            if (!$category) {
+                $colors = ['#EF4444', '#3B82F6', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899', '#14B8A6'];
+                $randomColor = $colors[array_rand($colors)];
+                
+                $category = Category::create([
+                    'name' => $categoryName,
+                    'slug' => $categorySlug,
+                    'color' => $randomColor,
+                ]);
+            }
+            $validated['category_id'] = $category->id;
+        }
+        unset($validated['new_category']);
+
         // Handle upload gambar
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -112,6 +132,26 @@ class ArticleController extends Controller
         }
 
         $validated = $request->validated();
+
+        // Handle dynamic category creation on the fly
+        if (!empty($validated['new_category'])) {
+            $categoryName = trim($validated['new_category']);
+            $categorySlug = \Illuminate\Support\Str::slug($categoryName);
+            
+            $category = Category::where('slug', $categorySlug)->first();
+            if (!$category) {
+                $colors = ['#EF4444', '#3B82F6', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899', '#14B8A6'];
+                $randomColor = $colors[array_rand($colors)];
+                
+                $category = Category::create([
+                    'name' => $categoryName,
+                    'slug' => $categorySlug,
+                    'color' => $randomColor,
+                ]);
+            }
+            $validated['category_id'] = $category->id;
+        }
+        unset($validated['new_category']);
 
         // Handle upload gambar baru
         if ($request->hasFile('image')) {

@@ -114,10 +114,6 @@
                 <i class="fas fa-newspaper w-6 text-lg mr-3"></i>Kelola Artikel
             </a>
             
-            <a href="{{ route('categories.index') }}" class="nav-admin-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                <i class="fas fa-tags w-6 text-lg mr-3"></i>Kelola Kategori
-            </a>
-            
             <a href="{{ route('admin.comments') }}" class="nav-admin-link {{ request()->routeIs('admin.comments') ? 'active' : '' }}">
                 <i class="fas fa-comments w-6 text-lg mr-3"></i>Moderasi Komentar
                 @php
@@ -142,21 +138,14 @@
                 @endif
             </a>
             
-            <a href="{{ route('admin.users') }}" class="nav-admin-link {{ request()->routeIs('admin.users') ? 'active' : '' }}">
-                <i class="fas fa-users w-6 text-lg mr-3"></i>Kelola User
-            </a>
 
             <!-- Quick Actions Panel in Sidebar -->
             <div class="pt-6 mt-6 border-t border-slate-800">
                 <div class="px-6 mb-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Quick Actions</div>
                 <div class="px-4 space-y-2">
-                    <a href="{{ route('articles.create') }}" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-red-700 hover:bg-red-800 text-white text-xs font-bold rounded-lg transition shadow-md">
+                    <a href="{{ route('articles.create') }}" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-red-700 hover:bg-red-800 text-white text-xs font-bold rounded-lg transition shadow-md w-full">
                         <i class="fas fa-plus"></i>
                         <span>TULIS ARTIKEL</span>
-                    </a>
-                    <a href="{{ route('categories.create') }}" class="flex items-center justify-center space-x-2 py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg transition border border-slate-700">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>KATEGORI BARU</span>
                     </a>
                 </div>
             </div>

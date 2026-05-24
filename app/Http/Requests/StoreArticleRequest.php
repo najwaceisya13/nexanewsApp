@@ -26,7 +26,8 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:10|max:255',
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required_without:new_category|nullable|exists:categories,id',
+            'new_category' => 'required_without:category_id|nullable|string|max:50',
             'content' => 'required|string|min:50',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,heic|max:5120', // max 5MB
             'status' => 'required|in:draft,published',
@@ -44,7 +45,8 @@ class StoreArticleRequest extends FormRequest
             'title.required' => 'Judul berita harus diisi',
             'title.min' => 'Judul minimal 10 karakter',
             'title.max' => 'Judul maksimal 255 karakter',
-            'category_id.required' => 'Kategori harus dipilih',
+            'category_id.required_without' => 'Pilih kategori yang ada ATAU tulis kategori baru',
+            'new_category.required_without' => 'Pilih kategori yang ada ATAU tulis kategori baru',
             'content.required' => 'Isi berita harus diisi',
             'content.min' => 'Isi berita minimal 50 karakter',
             'image.image' => 'File harus berupa gambar',

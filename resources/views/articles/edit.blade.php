@@ -35,19 +35,40 @@
                 <label for="category_id" class="block text-sm font-medium text-gray-900 mb-2">
                     Kategori <span class="text-red-600">*</span>
                 </label>
-                <select
-                    name="category_id"
-                    id="category_id"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 @error('category_id') border-red-600 @enderror"
-                    required
-                >
-                    @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id', $article->category_id) == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                    @endforeach
-                </select>
+                <div class="space-y-3">
+                    <select
+                        name="category_id"
+                        id="category_id"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 @error('category_id') border-red-600 @enderror"
+                    >
+                        <option value="">-- Pilih Kategori yang Ada --</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id', $article->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    
+                    <div class="relative flex items-center justify-center py-1">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200"></div>
+                        </div>
+                        <span class="relative px-3 bg-white text-xs font-semibold text-gray-400 uppercase">ATAU</span>
+                    </div>
+
+                    <input
+                        type="text"
+                        name="new_category"
+                        id="new_category"
+                        placeholder="Tulis Kategori Baru..."
+                        value="{{ old('new_category') }}"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 @error('new_category') border-red-600 @enderror"
+                    >
+                </div>
                 @error('category_id')
+                <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                @enderror
+                @error('new_category')
                 <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
                 @enderror
             </div>
