@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Edit Artikel - NexaNews')
 
 @section('content')
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-4xl mx-auto">
     <h1 class="text-3xl font-bold mb-8">Edit Artikel</h1>
 
     <form action="{{ route('articles.update', $article) }}" method="POST" enctype="multipart/form-data" class="bg-white rounded-lg shadow-sm p-8">
@@ -66,6 +66,42 @@
                     <option value="draft" {{ old('status', $article->status) === 'draft' ? 'selected' : '' }}>Draft</option>
                     <option value="published" {{ old('status', $article->status) === 'published' ? 'selected' : '' }}>Publish</option>
                 </select>
+            </div>
+        </div>
+
+        <!-- Penulis & Editor (dari Redaksi) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+                <label for="penulis" class="block text-sm font-medium text-gray-900 mb-2">
+                    Penulis <span class="text-gray-500 text-xs">(dari Redaksi)</span>
+                </label>
+                <input
+                    type="text"
+                    name="penulis"
+                    id="penulis"
+                    placeholder="Nama penulis dari redaksi"
+                    value="{{ old('penulis', $article->penulis) }}"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600"
+                >
+                @error('penulis')
+                <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <label for="editor" class="block text-sm font-medium text-gray-900 mb-2">
+                    Editor <span class="text-gray-500 text-xs">(dari Redaksi)</span>
+                </label>
+                <input
+                    type="text"
+                    name="editor"
+                    id="editor"
+                    placeholder="Nama editor dari redaksi"
+                    value="{{ old('editor', $article->editor) }}"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600"
+                >
+                @error('editor')
+                <p class="text-red-600 text-sm mt-2">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 

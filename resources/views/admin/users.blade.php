@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Kelola User - NexaNews')
 
 @section('content')
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-6xl mx-auto">
     <h1 class="text-3xl font-bold mb-8">Kelola User</h1>
 
     @if(session('success'))

@@ -11,15 +11,6 @@ use Illuminate\Http\Request;
  */
 class CategoryController extends Controller
 {
-    /**
-     * Constructor untuk middleware
-     * Hanya admin yang bisa mengakses
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('admin');
-    }
 
     /**
      * Display a listing of categories.

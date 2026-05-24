@@ -30,6 +30,8 @@ class UpdateArticleRequest extends FormRequest
             'content' => 'required|string|min:50',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'status' => 'required|in:draft,published',
+            'penulis' => 'nullable|string|max:100',
+            'editor' => 'nullable|string|max:100',
         ];
     }
 

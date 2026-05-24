@@ -72,7 +72,7 @@ class Comment extends Model
      */
     public function getCommentorNameAttribute()
     {
-        return $this->user ? $this->user->name : $this->name;
+        return $this->user ? $this->user->name : ($this->name ?: 'Pengunjung');
     }
 
     /**
@@ -80,6 +80,6 @@ class Comment extends Model
      */
     public function getCommentorEmailAttribute()
     {
-        return $this->user ? $this->user->email : $this->email;
+        return $this->user ? $this->user->email : ($this->email ?: '-');
     }
 }

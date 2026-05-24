@@ -15,6 +15,7 @@
     
     <!-- Font Awesome untuk Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
         * {
@@ -59,7 +60,7 @@
 
         /* Breaking News Bar */
         .breaking-news {
-            background-color: var(--primary-red);
+            background-color: #0f172a;
             color: white;
             padding: 12px 0;
             overflow: hidden;
@@ -69,14 +70,16 @@
             display: inline-block;
             animation: scroll 20s linear infinite;
             white-space: nowrap;
+            position: absolute;
+            left: 100%;
         }
 
         @keyframes scroll {
             0% {
-                transform: translateX(100%);
+                transform: translateX(0);
             }
             100% {
-                transform: translateX(-100%);
+                transform: translateX(-200%); /* Changed to ensure it moves completely across */
             }
         }
 
@@ -254,6 +257,7 @@
             font-family: 'Poppins', sans-serif;
             resize: vertical;
             min-height: 100px;
+            color: #1f2937; /* Fixed: text color so it is visible against white bg */
         }
 
         .feedback-form button {
@@ -283,7 +287,42 @@
         .footer-text {
             text-align: center;
             font-size: 14px;
-            color: #9ca3af;
+            color: #f5f5f5;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+
+        /* Hover warna sesuai brand */
+        .icon-circle.instagram:hover {
+            background: #E1306C;
+        }
+
+        .icon-circle.tiktok:hover {
+            background: #000000;
+        }
+
+        .icon-circle.twitter:hover {
+            background: #1DA1F2;
+        }
+
+        .icon-circle.email:hover {
+            background: #555; /* warna netral email */
+        }
+
+        /* efek tambahan */
+        .icon-circle:hover {
+            transform: translateY(-3px) scale(1.1);
         }
 
         /* Responsive */
@@ -458,14 +497,20 @@
                     <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
                         Home
                     </a>
-                    <a href="{{ route('category.show', 'makanan') }}" class="nav-link">
-                        Makanan
+                    <a href="{{ route('category.show', 'makan-dulu') }}" class="nav-link">
+                        Makan Dulu
                     </a>
-                    <a href="{{ route('category.show', 'teknologi') }}" class="nav-link">
-                        Teknologi
+                    <a href="{{ route('category.show', 'vibes') }}" class="nav-link">
+                        Vibes
                     </a>
-                    <a href="{{ route('category.show', 'pendidikan') }}" class="nav-link">
-                        Pendidikan
+                    <a href="{{ route('category.show', 'cuan') }}" class="nav-link">
+                        Cuan
+                    </a>
+                    <a href="{{ route('category.show', 'peduli') }}" class="nav-link">
+                        Peduli
+                    </a>
+                    <a href="{{ route('category.show', 'ilmu') }}" class="nav-link">
+                        Ilmu
                     </a>
                 </div>
 
@@ -480,9 +525,6 @@
                     @guest
                         <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900 font-medium">
                             Login
-                        </a>
-                        <a href="{{ route('register') }}" class="btn-primary">
-                            Register
                         </a>
                     @else
                         <div class="relative dropdown-menu">
@@ -516,11 +558,13 @@
 
     <!-- Breaking News -->
     <div class="breaking-news">
-        <div class="max-w-7xl mx-auto px-4">
-            <span style="font-weight: 600; font-size: 12px; margin-right: 16px;">🔴 BERITA TERKINI</span>
-            <span class="breaking-news-content">
-                Berita penting hari ini | Terus update dengan kami | Dapatkan informasi terbaru setiap saat
-            </span>
+        <div class="max-w-7xl mx-auto px-4 flex items-center">
+            <span style="font-weight: 600; font-size: 12px; margin-right: 16px; white-space: nowrap; position: relative; z-index: 10; background-color#0f172a;">🔴 BERITA TERKINI</span>
+            <div style="flex-grow: 1; overflow: hidden; position: relative; height: 20px;">
+                <span class="breaking-news-content">
+                    Berita penting hari ini | Terus update dengan kami | Dapatkan informasi terbaru setiap saat
+                </span>
+            </div>
         </div>
     </div>
 
@@ -535,33 +579,53 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">
-                        Nexa<span class="text-red-600">News</span>
+                        NexaNews
                     </h3>
                     <p class="text-gray-400 text-sm">
-                        Platform berita terpercaya untuk informasi terkini seputar Makanan, Teknologi, dan Pendidikan.
+                        Suara Mahasiswa, Cerita Kampus.
                     </p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Menu Utama</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="{{ route('home') }}" class="hover:text-white">Home</a></li>
-                        <li><a href="{{ route('category.show', 'makanan') }}" class="hover:text-white">Makanan</a></li>
-                        <li><a href="{{ route('category.show', 'teknologi') }}" class="hover:text-white">Teknologi</a></li>
-                        <li><a href="{{ route('category.show', 'pendidikan') }}" class="hover:text-white">Pendidikan</a></li>
+                        <li><a href="{{ route('category.show', 'makan-dulu') }}" class="hover:text-white">Makan Dulu</a></li>
+                        <li><a href="{{ route('category.show', 'vibes') }}" class="hover:text-white">Vibes</a></li>
+                        <li><a href="{{ route('category.show', 'cuan') }}" class="hover:text-white">Cuan</a></li>
+                        <li><a href="{{ route('category.show', 'peduli') }}" class="hover:text-white">Peduli</a></li>
+                         <li><a href="{{ route('category.show', 'ilmu') }}" class="hover:text-white">Ilmu</a></li>
+
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Kontak</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li>Email: info@nexanews.com</li>
-                        <li>Telepon: +62-800-0000</li>
-                        <li>Sosial Media: @nexanews</li>
-                    </ul>
-                </div>
-            </div>
+    <h4 class="font-semibold mb-4">Kontak</h4>
+    <ul class="space-y-2 text-sm text-gray-400">
+
+       <div class="social-icons flex gap-4 mt-3">
+
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nexanews05@gmail.com" class="icon-circle email">
+            <i class="fas fa-envelope"></i>
+        </a>
+
+        <a href="https://www.instagram.com/nexa_newscom" target="_blank" class="icon-circle instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@nexanews" target="_blank" class="icon-circle tiktok">
+            <i class="fab fa-tiktok"></i>
+        </a>
+
+        <a href="https://x.com/nexanewscom" target="_blank" class="icon-circle twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+
+    </div>
+    </ul>
+</div>
+</div> <!-- Tutup grid-cols-3 -->
             <div class="border-t border-gray-700 pt-8">
-                <div class="footer-text">
-                    <p>&copy; 2026 NexaNews. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <div class="footer-text text-center">
+                    <p>&copy; 2026 NexaNews. All rights reserved.</p>
                 </div>
             </div>
         </div>

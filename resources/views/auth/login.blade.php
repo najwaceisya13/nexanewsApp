@@ -9,12 +9,6 @@
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 Masuk ke <span style="color: var(--primary-red);">Nexa</span>News
             </h2>
-            <p class="mt-2 text-center text-sm text-gray-600">
-                Atau
-                <a href="{{ route('register') }}" class="font-medium text-red-600 hover:text-red-700 transition duration-150 ease-in-out">
-                    daftar akun baru di sini
-                </a>
-            </p>
         </div>
 
         @if (session('success'))

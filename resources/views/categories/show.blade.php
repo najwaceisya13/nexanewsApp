@@ -136,10 +136,10 @@
                         Kirimkan saran atau keluhan Anda kepada kami.
                     </p>
 
-                    <form method="POST" action="#" onsubmit="handleFeedbackSubmit(event)">
+                    <form method="POST" action="{{ route('feedback.store') }}">
                         @csrf
                         <textarea
-                            name="feedback"
+                            name="message"
                             placeholder="Tulis pesan Anda di sini..."
                             required
                         ></textarea>
@@ -163,11 +163,7 @@
 
 @section('additional_js')
 <script>
-    function handleFeedbackSubmit(event) {
-        event.preventDefault();
-        alert('Terima kasih atas masukan Anda!');
-        event.target.reset();
-    }
+    // Custom JS if needed in the future
 </script>
 @endsection
 @endsection

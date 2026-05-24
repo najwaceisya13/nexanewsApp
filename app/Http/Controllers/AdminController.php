@@ -15,15 +15,6 @@ use Illuminate\Http\Request;
  */
 class AdminController extends Controller
 {
-    /**
-     * Constructor untuk middleware
-     * Hanya admin yang bisa akses
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('admin');
-    }
 
     /**
      * Tampilkan dashboard admin

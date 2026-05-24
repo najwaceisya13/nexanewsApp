@@ -167,20 +167,13 @@
                         Kirimkan saran atau keluhan Anda kepada kami untuk meningkatkan kualitas layanan.
                     </p>
 
-                    <form method="POST" action="#" onsubmit="handleFeedbackSubmit(event)">
+                    <form method="POST" action="{{ route('feedback.store') }}">
                         @csrf
                         <textarea
-                            name="feedback"
+                            name="message"
                             placeholder="Tulis pesan Anda di sini..."
                             required
                         ></textarea>
-
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email Anda (opsional)"
-                            class="w-full mb-3 p-2 rounded-lg text-gray-900"
-                        >
 
                         <button type="submit">
                             <i class="fas fa-paper-plane mr-2"></i>KIRIM
@@ -194,12 +187,7 @@
 
 @section('additional_js')
 <script>
-    function handleFeedbackSubmit(event) {
-        event.preventDefault();
-        // Simple feedback handler - can be improved with actual backend integration
-        alert('Terima kasih atas masukan Anda!');
-        event.target.reset();
-    }
+    // Custom JS if needed in the future
 </script>
 @endsection
 @endsection

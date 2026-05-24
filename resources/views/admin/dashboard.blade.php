@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Dashboard Admin - NexaNews')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-7xl mx-auto">
     <!-- Page Header -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold">Dashboard Admin</h1>
-        <p class="text-gray-600">Kelola konten dan moderasi website NexaNews</p>
+        <h1 class="text-3xl font-bold text-slate-950">Dashboard Admin</h1>
+        <p class="text-slate-600">Kelola konten dan moderasi website NexaNews</p>
     </div>
 
     <!-- Statistics Cards -->
@@ -142,7 +142,7 @@
                         <div class="flex justify-between items-start mb-2">
                             <div>
                                 <h4 class="font-semibold">
-                                    {{ $comment->user ? $comment->user->name : $comment->name }}
+                                    {{ $comment->commentor_name }}
                                 </h4>
                                 <p class="text-xs text-gray-500">
                                     pada: <strong>{{ Str::limit($comment->article->title, 40) }}</strong>
@@ -217,29 +217,6 @@
                         Tidak ada notifikasi baru
                     </p>
                     @endforelse
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <h3 class="font-bold mb-4">Quick Actions</h3>
-                <div class="space-y-3">
-                    <a href="{{ route('articles.create') }}" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <i class="fas fa-file-alt mr-3 text-blue-600"></i>
-                        <span class="text-sm font-medium">Buat Artikel Baru</span>
-                    </a>
-                    <a href="{{ route('categories.create') }}" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <i class="fas fa-tag mr-3 text-purple-600"></i>
-                        <span class="text-sm font-medium">Buat Kategori</span>
-                    </a>
-                    <a href="{{ route('admin.comments', ['status' => 'pending']) }}" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <i class="fas fa-comment mr-3 text-orange-600"></i>
-                        <span class="text-sm font-medium">Moderasi Komentar</span>
-                    </a>
-                    <a href="{{ route('admin.users') }}" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                        <i class="fas fa-users mr-3 text-green-600"></i>
-                        <span class="text-sm font-medium">Kelola User</span>
-                    </a>
                 </div>
             </div>
 

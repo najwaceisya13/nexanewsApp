@@ -12,21 +12,39 @@
 
         <h1 class="text-4xl font-bold mb-4">{{ $article->title }}</h1>
 
-        <div class="flex items-center space-x-6 text-gray-600 mb-8 pb-8 border-b">
+        <div class="flex flex-wrap items-center gap-6 text-gray-600 mb-8 pb-8 border-b">
             <div class="flex items-center">
                 <i class="fas fa-user-circle text-2xl mr-2" style="color: var(--primary-red);"></i>
                 <div>
-                    <div class="font-semibold text-gray-900">{{ $article->user->name }}</div>
-                    <div class="text-sm">Penulis</div>
+                    <div class="font-semibold text-gray-900">{{ $article->penulis ?: $article->user->name }}</div>
+                    <div class="text-xs">Penulis</div>
                 </div>
             </div>
-            <div>
-                <i class="fas fa-calendar mr-2" style="color: var(--primary-red);"></i>
-                {{ $article->published_at->format('d M Y - H:i') }}
+            
+            @if($article->editor)
+            <div class="flex items-center">
+                <i class="fas fa-user-edit text-2xl mr-2" style="color: var(--primary-red);"></i>
+                <div>
+                    <div class="font-semibold text-gray-900">{{ $article->editor }}</div>
+                    <div class="text-xs">Editor</div>
+                </div>
             </div>
-            <div>
-                <i class="fas fa-eye mr-2" style="color: var(--primary-red);"></i>
-                {{ number_format($article->views) }} views
+            @endif
+
+            <div class="flex items-center">
+                <i class="fas fa-calendar mr-2" style="color: var(--primary-red);"></i>
+                <div>
+                    <div class="font-semibold text-gray-900">{{ $article->published_at->format('d M Y') }}</div>
+                    <div class="text-xs">{{ $article->published_at->format('H:i') }} WIB</div>
+                </div>
+            </div>
+            
+            <div class="flex items-center">
+                <i class="fas fa-eye text-2xl mr-2" style="color: var(--primary-red);"></i>
+                <div>
+                    <div class="font-semibold text-gray-900">{{ number_format($article->views) }}</div>
+                    <div class="text-xs">Views</div>
+                </div>
             </div>
         </div>
     </div>
@@ -87,25 +105,6 @@
                                 required
                             ></textarea>
 
-                            @if(!auth()->check())
-                            <div class="grid grid-cols-2 gap-4 mb-4">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Nama Anda"
-                                    class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600"
-                                    required
-                                >
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email Anda"
-                                    class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600"
-                                    required
-                                >
-                            </div>
-                            @endif
-
                             @error('content')
                             <div class="alert alert-error mb-4">{{ $message }}</div>
                             @enderror
@@ -123,7 +122,7 @@
                             <div class="flex items-start justify-between mb-3">
                                 <div>
                                     <h5 class="font-semibold">
-                                        {{ $comment->user ? $comment->user->name : $comment->name }}
+                                        {{ $comment->commentor_name }}
                                     </h5>
                                     <p class="text-sm text-gray-500">
                                         <i class="fas fa-clock mr-1"></i>

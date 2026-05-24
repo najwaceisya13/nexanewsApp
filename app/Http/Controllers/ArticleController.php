@@ -15,15 +15,6 @@ use App\Http\Requests\UpdateArticleRequest;
  */
 class ArticleController extends Controller
 {
-    /**
-     * Constructor untuk middleware
-     * Hanya admin yang bisa mengakses
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('admin')->except(['index', 'show']);
-    }
 
     /**
      * Display a listing of the resource.

@@ -28,8 +28,10 @@ class StoreArticleRequest extends FormRequest
             'title' => 'required|string|min:10|max:255',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string|min:50',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120', // max 5MB
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,heic|max:5120', // max 5MB
             'status' => 'required|in:draft,published',
+            'penulis' => 'nullable|string|max:100',
+            'editor' => 'nullable|string|max:100',
         ];
     }
 

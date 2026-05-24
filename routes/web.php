@@ -29,6 +29,9 @@ Route::post('/articles/{article}/comments', [CommentController::class, 'store'])
 Route::post('/articles/{article}/like', [LikeController::class, 'toggle'])->name('likes.toggle');
 Route::get('/articles/{article}/likes-count', [LikeController::class, 'getCount'])->name('likes.count');
 
+// Visitor Feedback route (publik)
+Route::post('/feedback', [\App\Http\Controllers\FeedbackController::class, 'store'])->name('feedback.store');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -52,13 +55,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::patch('/comments/{comment}/reject', [CommentController::class, 'reject'])->name('comments.reject');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
-    // User Management
-    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-    Route::patch('/users/{user}/role', [AdminController::class, 'updateRole'])->name('users.updateRole');
-
     // Notification Routes
     Route::patch('/notifications/{notification}/read', [AdminController::class, 'readNotification'])->name('notifications.read');
     Route::patch('/notifications/read-all', [AdminController::class, 'readAllNotifications'])->name('notifications.readAll');
+
+    // User Management Routes
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::patch('/users/{user}/role', [AdminController::class, 'updateRole'])->name('admin.users.role');
+
+    // Feedback Management Routes
+    Route::get('/feedback', [\App\Http\Controllers\FeedbackController::class, 'index'])->name('admin.feedback');
+    Route::delete('/feedback/{feedback}', [\App\Http\Controllers\FeedbackController::class, 'destroy'])->name('admin.feedback.destroy');
 });
 
 /*
@@ -70,8 +77,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register']);
 });
 
 Route::middleware('auth')->group(function () {

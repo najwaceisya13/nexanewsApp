@@ -20,13 +20,10 @@ class CommentController extends Controller
     {
         $validated = $request->validate([
             'content' => 'required|string|min:5|max:1000',
-            'name' => 'nullable|string|max:100',
-            'email' => 'nullable|email',
         ], [
             'content.required' => 'Komentar harus diisi',
             'content.min' => 'Komentar minimal 5 karakter',
             'content.max' => 'Komentar maksimal 1000 karakter',
-            'email.email' => 'Format email tidak valid',
         ]);
 
         $comment = new Comment();
@@ -38,8 +35,8 @@ class CommentController extends Controller
             $comment->user_id = auth()->id();
         } else {
             // Jika anonymous
-            $comment->name = $validated['name'];
-            $comment->email = $validated['email'];
+            $comment->name = null;
+            $comment->email = null;
         }
 
         // Status default pending (perlu moderasi)

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 /**
  * Controller untuk autentikasi user
- * Fitur: Login, Register, Logout
+ * Fitur: Login, Logout
  */
 class AuthController extends Controller
 {
@@ -62,52 +62,6 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'Email atau password salah.',
         ])->onlyInput('email');
-    }
-
-    /**
-     * Tampilkan form register
-     */
-    public function showRegister()
-    {
-        if (Auth::check()) {
-            return redirect()->route('home');
-        }
-
-        return view('auth.register');
-    }
-
-    /**
-     * Proses register user baru
-     */
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ], [
-            'name.required' => 'Nama lengkap wajib diisi.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'email.unique' => 'Email sudah terdaftar.',
-            'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password minimal harus 8 karakter.',
-            'password.confirmed' => 'Konfirmasi password tidak cocok.',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'user',
-            'status' => 'active',
-        ]);
-
-        Auth::login($user);
-
-        $request->session()->regenerate();
-
-        return redirect()->route('home')->with('success', 'Registrasi berhasil dan Anda telah masuk!');
     }
 
     /**

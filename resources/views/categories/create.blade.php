@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Buat Kategori - NexaNews')
 
 @section('content')
-<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-2xl mx-auto">
     <h1 class="text-3xl font-bold mb-8">Buat Kategori Baru</h1>
 
     <form action="{{ route('categories.store') }}" method="POST" class="bg-white rounded-lg shadow-sm p-8">

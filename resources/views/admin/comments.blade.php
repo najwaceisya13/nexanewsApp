@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Moderasi Komentar - NexaNews')
 
 @section('content')
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-6xl mx-auto">
     <div class="mb-8">
         <h1 class="text-3xl font-bold mb-2">Moderasi Komentar</h1>
         <p class="text-gray-600">Approve atau reject komentar dari pengunjung website</p>
@@ -35,10 +35,10 @@
             <div class="flex justify-between items-start mb-4">
                 <div>
                     <h3 class="font-semibold text-lg">
-                        {{ $comment->user ? $comment->user->name : $comment->name }}
+                        {{ $comment->commentor_name }}
                     </h3>
                     <p class="text-sm text-gray-500">
-                        {{ $comment->user ? $comment->user->email : $comment->email }}
+                        {{ $comment->commentor_email }}
                     </p>
                 </div>
                 <div class="text-right">

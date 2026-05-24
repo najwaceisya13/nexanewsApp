@@ -17,12 +17,14 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',      // User (penulis) berita
+        'user_id',      // User (admin) yang membuat berita
         'category_id',  // Kategori berita
         'title',        // Judul berita
         'slug',         // Slug untuk URL yang SEO friendly
         'content',      // Isi berita
         'image',        // Path gambar berita
+        'penulis',      // Nama penulis dari redaksi
+        'editor',       // Nama editor dari redaksi
         'status',       // Status: draft atau published
         'published_at', // Tanggal publikasi
         'views',        // Jumlah views
@@ -32,6 +34,10 @@ class Article extends Model
         'published_at' => 'datetime',
     ];
 
+    public function getRouteKeyName()
+{
+    return 'slug';
+}
     /**
      * Event: Generate slug otomatis saat create dari title
      */
@@ -40,16 +46,9 @@ class Article extends Model
         parent::boot();
 
         static::creating(function ($article) {
-            if (!$article->slug) {
-                $article->slug = Str::slug($article->title);
-            }
-        });
-
-        static::updating(function ($article) {
-            // Update slug jika title berubah
-            if ($article->isDirty('title')) {
-                $article->slug = Str::slug($article->title);
-            }
+        if (!$article->slug) {
+            $article->slug = Str::slug($article->title);
+        }
         });
     }
 
